@@ -41,8 +41,9 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.1.0'
 
     //Retrofit
+    //** Retrofit é quem faz as requisições (get, post, put, delete)
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
-    implementation 'com.squareup.retrofit2:retrofit:converter-gson:2.9.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
 
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
