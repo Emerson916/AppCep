@@ -55,47 +55,52 @@
 
     <EditText
         android:id="@+id/editTextCidade"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_width="264dp"
+        android:layout_height="44dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
         android:ems="10"
-        android:inputType="textPersonName"
         android:hint="Informe sua cidade"
-        app:layout_constraintEnd_toEndOf="@+id/editTextRua"
-        app:layout_constraintStart_toStartOf="@+id/editTextRua"
-        app:layout_constraintTop_toBottomOf="@+id/editTextRua" />
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toBottomOf="@+id/editTextEstado"
+        app:layout_constraintStart_toEndOf="@+id/editTextEstado"
+        app:layout_constraintTop_toBottomOf="@+id/editTextRua"
+        app:layout_constraintVertical_bias="1.0" />
 
     <EditText
         android:id="@+id/editTextEstado"
-        android:layout_width="0dp"
+        android:layout_width="50dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="12dp"
         android:ems="10"
-        android:inputType="textPersonName"
         android:hint="Informe seu estado"
-        app:layout_constraintEnd_toEndOf="@+id/editTextCidade"
-        app:layout_constraintStart_toStartOf="@+id/editTextCidade"
-        app:layout_constraintTop_toBottomOf="@+id/editTextCidade" />
-
-    <TextView
-        android:id="@+id/textViewEndereco"
-        android:layout_width="325dp"
-        android:layout_height="71dp"
-        android:layout_marginTop="20dp"
-        android:background="#ececec"
-        android:hint="Endereço"
-        app:layout_constraintEnd_toEndOf="@+id/editTextEstado"
-        app:layout_constraintStart_toStartOf="@+id/editTextEstado"
-        app:layout_constraintTop_toBottomOf="@+id/editTextEstado" />
+        android:inputType="textPersonName"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextRua" />
 
     <Button
         android:id="@+id/buttonEndereco"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:text="Pesquisar"
-        app:layout_constraintEnd_toEndOf="@+id/textViewEndereco"
-        app:layout_constraintTop_toBottomOf="@+id/textViewEndereco" />
+        app:layout_constraintEnd_toEndOf="@+id/editTextCidade"
+        app:layout_constraintTop_toBottomOf="@+id/editTextCidade" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_ceps"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonEndereco"
+        tools:listitem="@layout/ceps_recycler_view_layout"
+        />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

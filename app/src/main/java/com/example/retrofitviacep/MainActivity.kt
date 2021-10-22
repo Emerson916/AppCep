@@ -7,6 +7,9 @@ import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -23,6 +26,9 @@ class MainActivity : AppCompatActivity() {
     lateinit var textViewEndereco: TextView
     lateinit var buttonEndereco: Button
 
+    lateinit var rvCeps: RecyclerView
+    lateinit var cepsAdapter: CepsAdapter
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,15 +41,29 @@ class MainActivity : AppCompatActivity() {
         editTextRua = findViewById(R.id.editTextRua)
         editTextCidade = findViewById(R.id.editTextCidade)
         editTextEstado = findViewById(R.id.editTextEstado)
-        textViewEndereco = findViewById(R.id.textViewEndereco)
+
         buttonEndereco = findViewById(R.id.buttonEndereco)
+
+
+        // Configuração da RecyclerView
+        // * Inicialização da RV(RecycleView) e do Adapter
+        rvCeps = findViewById(R.id.rv_ceps)
+        cepsAdapter = CepsAdapter(this)
+
+        // * Determinar o layout da RV(RecycleView)
+        //rvCeps.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+
+        rvCeps.layoutManager = GridLayoutManager(this, 2 )
+
+
+        //* Definindo a Adapter da RV(RecycleView)
+        rvCeps.adapter = cepsAdapter
 
         button.setOnClickListener{
             //obter uma instância da conexão com o Backend
             val remote = RetrofitFactory().retrofitService()
 
             //Criar uma chamada para o endpoint /cep/json
-
             val call: Call<Cep> = remote.getCEP(editTextCep.text.toString())
 
             //Executar a chamada paraa a API
@@ -71,8 +91,10 @@ class MainActivity : AppCompatActivity() {
             //Executar a chamada paraa a API
             call.enqueue(object : Callback<List<Cep>>{
                 override fun onResponse(call: Call<List<Cep>>, response: Response<List<Cep>>) {
-                    val cep = response.body()
-                    textViewEndereco.text = cep.toString()
+                    val ceps = response.body()
+
+                    cepsAdapter.updateListasCeps(ceps!!)
+
                 }
 
                 override fun onFailure(call: Call<List<Cep>>, t: Throwable) {
