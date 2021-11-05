@@ -8,7 +8,8 @@ import java.net.URL
 
 class RetrofitFactory {
 
-    val URL = "https://viacep.com.br/ws/"
+    //val URL = "https://viacep.com.br/ws/"
+    val URL = "http://localhost:8080/api/clientes/"
 
     val retrofitFactory =
             Retrofit.Builder()
